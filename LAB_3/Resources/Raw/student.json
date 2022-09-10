@@ -1,0 +1,41 @@
+[
+  {
+    "Id": 1,
+    "Name": "Nikita Gribkov",
+    "Description": "Никита родился в Москве, живёт в районе Западное Дегунино хочет стать PHP-разработчиком",
+    "TypeOfStudents": "free",
+    "Image": "../nikita.jpg"
+  },
+
+  {
+    "Id": 2,
+    "Name": "Samir Kurbatov",
+    "Description": "Самир родился в Москве, обрусевший татарин, проживает в Мытищах хочет стать фулл-стек ASP.Net разработчиком",
+    "TypeOfStudents": "free",
+    "Image": "samir.jpg"
+  },
+
+  {
+    "Id": 3,
+    "Name": "Egor Rudov",
+    "Description": "Егор родился в Москве, живёт в районе Восточное Дегунино хочет стать React-разработчиком",
+    "TypeOfStudents": "paid",
+    "Image": "../egor.jpg"
+  },
+
+  {
+    "Id": 4,
+    "Name": "Artem Zaichevskiy",
+    "Description": "Артём родился в Москве, живёт в районе Восточное Дегунино и хочет стать Python-разработчиком",
+    "TypeOfStudents": "paid",
+    "Image": "artem.jpg"
+  },
+
+  {
+    "Id": 5,
+    "Name": "Ivan Ivanov",
+    "Description": "Ваня родился в Москве, живёт в районе Отрадное любит музыку и пишет биты, а также увлекается программированием на C#",
+    "TypeOfStudents": "paid",
+    "Image": "ivan.jpg"
+  }
+]
