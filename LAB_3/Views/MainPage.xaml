@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LAB_3.Converters"
              x:Class="LAB_3.MainPage"
-             BackgroundColor="LightBlue">
+             BackgroundColor="BlueViolet">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Добавить"
                      Order="Secondary"
@@ -10,12 +11,19 @@
                      Command="{Binding AddItemCommand}"/>
     </ContentPage.ToolbarItems>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:BoolToColorConverter x:Key="BoolToColor"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <StackLayout>
         <Grid ColumnDefinitions="*,*">
             <ScrollView Grid.Column="0">
                 <CollectionView ItemsSource="{Binding Students}"
                                 SelectedItem="{Binding SelectedItem}"
-                                SelectionMode="Single">
+                                SelectionMode="Single"
+                                x:Name="ListOfStudents">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid RowSpacing="10"
@@ -58,7 +66,7 @@
                                                        FontSize="12"
                                                        HorizontalOptions="Center"
                                                        VerticalOptions="Center"
-                                                       Padding="11,0,15,12" />
+                                                       Padding="11,0,20,0" />
                                             </Frame>
                                         </Grid>
                                     </StackLayout>
@@ -69,12 +77,37 @@
                 </CollectionView>
             </ScrollView>
             <ScrollView Grid.Column="1">
-                <Label Text="{Binding Desc}"
-                       TextColor="White"
-                       FontSize="Medium"
-                       HorizontalTextAlignment="Center" />
+                <Grid RowDefinitions="60,*"
+                      Padding="20,0,20,0">
+
+                    <Label Text="{Binding Title}"
+                           BackgroundColor="{Binding CurrentColor, Converter={StaticResource BoolToColor}}"
+                           Grid.Row="0" 
+                           FontSize="Medium"
+                           CharacterSpacing="3"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Margin="10"/>
+                    <Label Text="{Binding Desc}"
+                           FontSize="Medium"
+                           HorizontalTextAlignment="Center"
+                           Grid.Row="1" />
+                </Grid>
             </ScrollView>
+    
         </Grid>
+        <StackLayout>
+            <Button Text="Добавить"
+                    Command="{Binding AddItemCommand}"
+                    WidthRequest="100"
+                    HorizontalOptions="Start"
+                    Margin="10"/>
+            <Button Text="Удалить"
+                    Command="{Binding RemoveItemCommand}"
+                    WidthRequest="100"
+                    HorizontalOptions="Start"
+                    Margin="10"/>
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>

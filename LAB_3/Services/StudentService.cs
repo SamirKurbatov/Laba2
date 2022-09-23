@@ -1,6 +1,7 @@
 ﻿using LAB_3.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -13,7 +14,8 @@ namespace LAB_3.Services
         // Создаем список для хранения данных из источника
         List<Student> studentList = new();
 
-        // Метод GetFood() служит для извлечения и сруктурирования данных
+
+        // Метод GetStudent() служит для извлечения и сруктурирования данных
         // в соответсвии с существующей моделью данных
         public async Task<IEnumerable<Student>> GetStudent()
         {
@@ -28,8 +30,9 @@ namespace LAB_3.Services
             using var reader = new StreamReader(stream);
             var contents = await reader.ReadToEndAsync();
             studentList = JsonSerializer.Deserialize<List<Student>>(contents);
-
             return studentList;
         }
+
+
     }
 }

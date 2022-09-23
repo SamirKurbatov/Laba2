@@ -1,11 +1,6 @@
 ﻿using LAB_3.Models;
 using LAB_3.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace LAB_3.ViewModels
@@ -32,6 +27,9 @@ namespace LAB_3.ViewModels
         // Публичное свойство для представления
         // описания выбранного элемента из коллекции
         public string Desc { get; set; }
+        public string Title { get; set; }
+
+        public bool CurrentColor { get; set; }
 
         // Свойство для представления и изменения
         // состояния выбранного объекта
@@ -45,12 +43,20 @@ namespace LAB_3.ViewModels
                 // Метод отвечает за обновление данных
                 // в реальном времени
                 OnPropertyChanged(nameof(Desc));
+                OnPropertyChanged(nameof(Title));
+                OnPropertyChanged(nameof(CurrentColor));
             }
         }
 
         // Команда для добавления нового элемента
         // в коллекцию
         public ICommand AddItemCommand => new Command(() => AddNewItem());
+        public ICommand RemoveItemCommand => new Command(() => RemoveItem());
+
+        private void RemoveItem()
+        {
+            Students.Remove(_selectedItem);
+        }
 
         // Метод для создания нового элемента
         private void AddNewItem()
@@ -82,7 +88,7 @@ namespace LAB_3.ViewModels
             catch (Exception ex)
             {
                 await Shell.Current.DisplayAlert("Ошибка!",
-                    $"Что-то пошло не так: {ex.Message}", "OK");
+                $"Что-то пошло не так: {ex.Message}", "OK");
             }
         }
 
